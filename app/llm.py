@@ -10,6 +10,7 @@ def call_llm(prompt: str):
             messages=[{"role": "user", "content": prompt}],
         )
         return response.choices[0].message.content
+
     except Exception as e:
         print("LLM ERROR:", str(e))
         return "Error: LLM request failed"

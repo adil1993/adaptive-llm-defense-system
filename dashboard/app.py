@@ -14,21 +14,16 @@ if st.button("Analyze"):
     if not prompt.strip():
         st.warning("Please enter a prompt")
     else:
-        try:
-            res = requests.post(API_URL, params={"prompt": prompt}, timeout=10)
+        with st.spinner("Analyzing..."):
+            try:
+                res = requests.post(API_URL, params={"prompt": prompt}, timeout=60)
 
-            if res.status_code != 200:
-                st.error(f"API Error: {res.status_code}")
-                st.text(res.text)
-            else:
-                try:
-                    result = res.json()
-                except:
-                    st.error("Invalid JSON response")
+                if res.status_code != 200:
+                    st.error(f"API Error: {res.status_code}")
                     st.text(res.text)
-                    result = None
+                else:
+                    result = res.json()
 
-                if result:
                     if result.get("status") == "blocked":
                         st.error("🚫 BLOCKED")
                     else:
@@ -41,18 +36,27 @@ if st.button("Analyze"):
                     st.subheader("Full Response")
                     st.json(result)
 
-        except requests.exceptions.ConnectionError:
-            st.error("Cannot connect to backend")
-        except Exception as e:
-            st.error(str(e))
+            except requests.exceptions.ConnectionError:
+                st.error("Cannot connect to backend")
+
+            except requests.exceptions.Timeout:
+                st.error("Request timed out (backend too slow)")
+
+            except Exception as e:
+                st.error(str(e))
 
 st.header("Attack Memory")
 
 try:
     with open("../data/attacks.json") as f:
         data = json.load(f)
-    df = pd.DataFrame(data)
-    st.dataframe(df[["prompt"]])
-    st.metric("Stored Attacks", len(df))
+
+    if data:
+        df = pd.DataFrame(data)
+        st.dataframe(df[["prompt"]])
+        st.metric("Stored Attacks", len(df))
+    else:
+        st.info("No attack data yet")
+
 except:
     st.write("No attack data yet")

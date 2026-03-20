@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+openai
+numpy
+scikit-learn
+streamlit
+requests
+pandas
+python-dotenv

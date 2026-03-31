@@ -166,6 +166,8 @@ A detailed explanation of the system design and approach:
 
 👉 https://medium.com/@lumoracreats/i-tried-breaking-my-own-llm-app-thats-when-i-realised-it-wasn-t-safe-a91655286b5b?sk=44ac44dfe77be82c3ee74243124ae865
 
+👉 https://medium.com/@lumoracreats/i-tried-breaking-my-own-llm-defense-system-heres-what-happened-c72ce81ae7e4?sk=d41ce63b9b8f0c275b31baf756e771ec
+
 ---
 
 ## 📜 License

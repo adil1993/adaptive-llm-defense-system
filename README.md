@@ -164,7 +164,7 @@ This project reflects a shift from **model-centric safety** to **system-level se
 
 A detailed explanation of the system design and approach:
 
-👉 [Medium Article Link]
+👉 https://medium.com/@lumoracreats/i-tried-breaking-my-own-llm-app-thats-when-i-realised-it-wasn-t-safe-a91655286b5b?sk=44ac44dfe77be82c3ee74243124ae865
 
 ---
 
